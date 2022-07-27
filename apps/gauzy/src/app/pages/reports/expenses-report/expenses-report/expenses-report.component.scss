@@ -1,5 +1,4 @@
-@import 'report';
-@import 'gauzy/_gauzy-overrides';
+@import "report";
 
 :host {
     ::ng-deep {
@@ -10,21 +9,6 @@
     }
 }
 
-:host {
-  .filters {
-    display: flex;
-    justify-content: flex-end;
-    gap: 5px;
-  }
-
-  ::ng-deep {
-    ng-select {
-      min-width: 10rem;
-    }
-    @include ng-select-overrides(
-      2rem,
-      $default-button-radius,
-      $default-box-shadow
-    );
-  }
+.filters {
+    text-align: right;
 }

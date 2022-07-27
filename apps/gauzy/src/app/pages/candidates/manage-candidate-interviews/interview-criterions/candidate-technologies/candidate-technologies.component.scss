@@ -85,7 +85,6 @@
   nb-card {
     background-color: var(--gauzy-card-2);
   }
-  @include dialog(var(--gauzy-card-2), var(--gauzy-card-1));
 }
 h6 {
   font-size: 14px;

@@ -1,4 +1,3 @@
-@import 'gauzy/_gauzy-overrides';
 @import 'var';
 
 .form-group input {
@@ -108,8 +107,4 @@ h4 {
   font-weight: 600;
   line-height: 30px;
   letter-spacing: 0em;
-}
-
-:host {
-  @include input-appearance(42px, var(--gauzy-card-1));
 }

@@ -99,7 +99,6 @@
   justify-content: space-between;
   align-items: flex-end;
   border: none;
-  @include dialog(var(--gauzy-card-2), var(--gauzy-card-1));
 }
 
 .feedbacks-card-wrap {
@@ -270,6 +269,7 @@
 }
 
 :host {
+
   nb-card,
   nb-card-body,
   .feedbacks-card-wrap {
@@ -278,5 +278,4 @@
 
   overflow-y: auto;
   max-height: calc(100vh - 28rem);
-  @include input-appearance(2rem, var(--gauzy-sidebar-background-4));
 }

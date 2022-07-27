@@ -1,76 +1,44 @@
-@import 'gauzy/_gauzy-table';
-
-.employee-info-wrapper,
-.right-side {
+.employee-info-wrapper {
   position: relative;
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  flex-wrap: wrap;
+  margin-bottom: 40px;
 }
-.right-side {
-  gap: 1rem;
-  padding: 1rem;
-  .employee-org-info {
-    padding: 10px;
-    background-color: var(--gauzy-card-2);
-    border-radius: var(--border-radius);
-    color: var(--gauzy-text-color-1);
-    height: 100%;
-    .employee-profile-item-title {
-      color: var(--gauzy-text-color-2);
-      font-size: 12px;
-      font-weight: 600;
-      line-height: 15px;
-      letter-spacing: 0em;
-    }
-    .employee-profile-item-keys,
-    .employee-profile-item-value {
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-      gap: 6px;
-    }
-    .employee-profile-item-value {
-      font-size: 14px;
-      font-weight: 400;
-      line-height: 17px;
-      letter-spacing: 0em;
-      gap: 4px;
-    }
+
+.edit-icon {
+  right: 36px;
+  position: absolute;
+  width: 36px;
+  display: flex;
+  justify-content: center;
+  height: 36px;
+  align-items: center;
+
+  svg {
+    position: absolute;
+  }
+
+  nb-icon {
+    cursor: pointer;
+    z-index: 999;
   }
 }
 
 .employee-photo-wrapper {
   display: flex;
-  gap: 17px;
-  align-items: center;
-  padding: 1rem;
+  border-right: 1px solid lightgray;
   .employee-info {
-    .employee-name {
-      font-size: 14px;
-      font-weight: 600;
-      line-height: 17px;
-      letter-spacing: 0em;
-      color: var(--gauzy-text-color-1);
-    }
-    color: var(--gauzy-text-color-2);
-    font-size: 12px;
-    font-weight: 400;
-    line-height: 15px;
-    letter-spacing: 0em;
     display: flex;
     flex-flow: column;
+    margin-left: 35px;
   }
 }
 
 img.employee-image {
   object-fit: cover;
   object-position: center;
-  width: 72px;
-  height: 72px;
-  border-radius: var(--border-radius);
-  box-shadow: var(--gauzy-shadow);
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 1, 0.2);
 }
 
 .employee-photo {
@@ -82,15 +50,14 @@ img.employee-image {
     position: absolute;
     height: 100%;
     width: 100%;
-    border-radius: var(--border-radius);
+    border-radius: 13px;
   }
 
   img {
-    width: 72px;
-    height: 72px;
-    border-radius: var(--border-radius);
-    box-shadow: var(--gauzy-shadow);
-    object-fit: cover;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0, 0, 1, 0.2);
   }
 
   input {
@@ -107,24 +74,18 @@ img.employee-image {
     transition: opacity 0.2s ease-in;
     opacity: 0.3;
     position: absolute;
-    width: 48px;
-    height: 48px;
-    top: calc(50% - 48px / 2);
-    left: calc(50% - 48px / 2);
-    g circle {
-      fill: var(--text-primary-color);
-    }
+    top: calc(50% - 68px / 2);
+    left: calc(50% - 68px / 2);
   }
 }
 
-button.save-image {
-  bottom: -24px;
+button.save_image {
+  top: 125px;
   position: absolute;
-  left: -4px;
+  left: 50px;
   z-index: 9999;
+  padding: 5px 15px;
   font-size: 12px;
-  border: none;
-  box-shadow: var(--gauzy-shadow);
 }
 
 .employee-profile-item-title {
@@ -135,8 +96,9 @@ button.save-image {
 }
 
 .employee-profile-item {
+  height: 35px;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
 }
 
 .tag {
@@ -164,20 +126,8 @@ button.save-image {
 }
 
 .o__p__s__t {
-  background-color: var(--gauzy-card-2);
-  border-radius: 0 var(--border-radius) var(--border-radius)
-    var(--border-radius);
-  overflow: auto;
-  height: calc(100vh - 16rem);
-}
-
-nb-card {
-  margin: 0;
-  nb-card-body {
-    background-color: var(--gauzy-card-2);
-    border-radius: var(--border-radius);
-    padding: 0;
-  }
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .skill-items {
@@ -186,40 +136,5 @@ nb-card {
   padding: 0;
   > li {
     margin-right: 5px;
-  }
-}
-
-.tab-employee-info {
-  .employee-profile-item {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-    .employee-profile-item-title {
-      font-size: 12px;
-      font-weight: 600;
-      line-height: 15px;
-      letter-spacing: 0em;
-      width: 8rem;
-      color: var(--gauzy-text-color-2);
-    }
-    .bill-rate {
-      background-color: var(--color-primary-transparent-100);
-      font-weight: 600;
-      border-radius: 4px;
-      padding: 4px 8px;
-      color: var(--text-primary-color);
-    }
-    .pay-period {
-      padding: 4px 8px;
-      background-color: var(--color-success-transparent-300);
-      font-weight: 600;
-      border-radius: 4px;
-      color: var(--color-success-600);
-    }
-    color: var(--gauzy-text-color-1);
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 17px;
-    letter-spacing: 0em;
   }
 }

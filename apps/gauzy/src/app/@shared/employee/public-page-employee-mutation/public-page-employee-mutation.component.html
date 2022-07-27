@@ -1,11 +1,14 @@
-<nb-card class="main">
-	<nb-card-header class="d-flex flex-column">
-		<span class="cancel">
-			<i class="fas fa-times" (click)="close()"></i>
-		</span>
-		<h5 class="title">
+<nb-card>
+	<nb-card-header class="d-flex">
+		<h5>
 			{{ 'POP_UPS.EDIT_PAGE' | translate }}
 		</h5>
+
+		<nb-icon
+			class="ml-auto mt-1 close"
+			icon="close-outline"
+			(click)="close()"
+		></nb-icon>
 	</nb-card-header>
 	<nb-card-body class="body">
 		<form [formGroup]="form">
@@ -97,10 +100,7 @@
 									'FORM.LABELS.PREFERRED_LANGUAGE' | translate
 								}}</label>
 								<ngx-language-selector
-									[placeholder]="
-										'FORM.PLACEHOLDERS.PREFERRED_LANGUAGE'
-											| translate
-									"
+									[placeholder]="'FORM.PLACEHOLDERS.PREFERRED_LANGUAGE'| translate"
 									class="d-block"
 									selectBy="object"
 									template="ng-select"
@@ -204,10 +204,7 @@
 										'FORM.LABELS.EMPLOYEE_LEVEL' | translate
 									}}
 								</label>
-								<ng-select
-									appendTo="body"
-									formControlName="employeeLevel"
-								>
+								<ng-select appendTo="body" formControlName="employeeLevel">
 									<ng-option
 										*ngFor="let empL of employeeLevels"
 										[value]="empL.level"
@@ -274,15 +271,13 @@
 											fullWidth="true"
 										>
 											<nb-option
-												*ngFor="
-													let payPeriod of payPeriods
-												"
+												*ngFor="let payPeriod of payPeriods"
 												[value]="payPeriod"
 											>
 												{{
 													payPeriod
 														| replace: '_':' '
-														| titlecase
+															| titlecase
 												}}
 											</nb-option>
 										</nb-select>
@@ -364,45 +359,23 @@
 					responsive
 				>
 					<div class="row">
-						<div class="col">
-							<div class="row" *ngIf="employeeAwards">
-								<div class="col">
-									<nb-tag-list>
-										<nb-tag
-											*ngFor="let award of employeeAwards"
-											(remove)="removeAward(award)"
-											[text]="
-												award.name +
-												' (' +
-												award.year +
-												')'
-											"
-											removable
-										></nb-tag>
-									</nb-tag-list>
-								</div>
-							</div>
-							<div
+						<div class="col-sm-12">
+							<span class="heading_title">{{
+								'POP_UPS.AWARDS' | translate
+							}}</span>
+							<button
 								*ngIf="!showAddAward"
 								(click)="showAddAward = !showAddAward"
-								class="button-add-award"
+								nbButton
+								status="success"
+								class="add_new"
 							>
-								<button
-									nbButton
-									status="success"
-									outline
-									size="small"
-								>
-									<i class="fas fa-plus"></i>
-								</button>
-								<span class="heading_title">{{
-									'POP_UPS.AWARDS' | translate
-								}}</span>
-							</div>
-							<div
-								class="row mt-3 show-add-award"
-								*ngIf="showAddAward"
-							>
+								<nb-icon
+									class="mr-1"
+									icon="plus-outline"
+								></nb-icon>
+							</button>
+							<div class="row" *ngIf="showAddAward">
 								<div
 									class="col-sm-4 d-flex flex-column justify-content-end"
 								>
@@ -439,8 +412,9 @@
 									/>
 								</div>
 
-								<span class="col d-flex align-items-end">
+								<span class="col" style="margin-top: 29px">
 									<button
+										class="w-100"
 										(click)="
 											addAward(
 												addInputName.value,
@@ -449,20 +423,36 @@
 										"
 										nbButton
 										status="success"
-										size="small"
-										class="mr-3"
 									>
-										{{ 'BUTTONS.SAVE' | translate }}</button
+										{{ 'BUTTONS.SAVE' | translate }}
+									</button></span
+								>
+								<span class="col" style="margin-top: 29px"
 									><button
+										class="w-100"
 										(click)="showAddAward = !showAddAward"
 										nbButton
-										status="basic"
-										size="small"
-										outline
+										status="danger"
 									>
 										{{ 'BUTTONS.CANCEL' | translate }}
-									</button>
-								</span>
+									</button></span
+								>
+							</div>
+							<div class="row" *ngIf="employeeAwards.length">
+								<div class="col">
+									<nb-card class="mt-3">
+										<nb-card-body>
+											<nb-tag-list>
+												<nb-tag
+													*ngFor="let award of employeeAwards"
+													(remove)="removeAward(award)"
+													[text]="award.name + ' (' + award.year + ')'"
+													removable>
+												</nb-tag>
+											</nb-tag-list>
+										</nb-card-body>
+									</nb-card>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -472,20 +462,20 @@
 					tabIcon="shield-outline"
 					responsive
 				>
-					<div class="row mt-3">
+					<div class="row">
 						<div
 							class="col-sm-6"
 							*ngFor="let setting of privacySettings"
 						>
-							<div class="form-group extra_padding">
+							<div class="form-group form-item">
+								<label class="check" for="{{ setting.key }}">
+									{{ setting.translation | translate }}
+								</label>
 								<nb-toggle
 									class="nb_toggle"
 									id="{{ setting.key }}"
 									[formControlName]="setting.key"
 								>
-								<label class="check" for="{{ setting.key }}">
-									{{ setting.translation | translate }}
-								</label>
 								</nb-toggle>
 							</div>
 						</div>
@@ -506,13 +496,8 @@
 			</nb-tabset>
 		</form>
 	</nb-card-body>
-	<nb-card-footer>
-		<button
-			status="success"
-			size="small"
-			nbButton
-			(click)="updateEmployee()"
-		>
+	<nb-card-footer class="card-footer">
+		<button status="success" nbButton (click)="updateEmployee()">
 			{{ 'BUTTONS.UPDATE' | translate }}
 		</button>
 	</nb-card-footer>

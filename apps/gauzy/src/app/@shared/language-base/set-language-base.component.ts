@@ -6,12 +6,12 @@ import { TranslateService } from '@ngx-translate/core';
  */
 export abstract class SetLanguageBaseComponent {
 	constructor(public translateService: TranslateService) {
-		this.translateService.addLangs(['en', 'bg', 'he', 'ru']);
+		this.translateService.addLangs(['en', 'ss']);
 		this.translateService.setDefaultLang('en');
 
 		const browserLang = this.translateService.getBrowserLang();
 		this.translateService.use(
-			browserLang.match(/en|bg|he|ru/) ? browserLang : 'en'
+			browserLang.match(/en|ss/) ? browserLang : 'en'
 		);
 	}
 

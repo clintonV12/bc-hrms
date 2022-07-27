@@ -1,4 +1,4 @@
-@import 'gauzy/_gauzy-overrides';
+@import 'themes';
 
 :host {
 	nb-card {
@@ -7,7 +7,6 @@
 			padding: 1rem;
 		}
 	}
-	@include input-appearance(42px, var(--gauzy-card-1));
 
 	::ng-deep .route-tabset .route-tab {
 

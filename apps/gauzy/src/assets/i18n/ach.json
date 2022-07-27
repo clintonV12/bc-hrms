@@ -122,11 +122,7 @@
 		"FEEDBACK": "crwdns11132:0crwdne11132:0",
 		"EQUIPMENT_SHARING": "crwdns11146:0crwdne11146:0",
 		"PRIVATE": "crwdns11217:0crwdne11217:0",
-		"PUBLIC": "crwdns11219:0crwdne11219:0",
-		"MANAGE_WIDGET": "crwdns11457:0crwdne11457:0",
-		"MOVE": "crwdns11459:0crwdne11459:0",
-		"COLLAPSE": "crwdns11461:0crwdne11461:0",
-		"EXPAND": "crwdns11463:0crwdne11463:0"
+		"PUBLIC": "crwdns11219:0crwdne11219:0"
 	},
 	"SM_TABLE": {
 		"NO_DATA": {
@@ -996,9 +992,7 @@
 		"GAUZY_DARK": "crwdns11002:0crwdne11002:0",
 		"LANGUAGE": "crwdns2116:0crwdne2116:0",
 		"ENGLISH": "crwdns2118:0crwdne2118:0",
-		"BULGARIAN": "crwdns2120:0crwdne2120:0",
-		"HEBREW": "crwdns2122:0crwdne2122:0",
-		"RUSSIAN": "crwdns2124:0crwdne2124:0",
+		"SISWATI": "crwdns2120:0crwdne2120:0",
 		"PREFERRED_LAYOUT": "crwdns7048:0crwdne7048:0",
 		"PREFERRED_LAYOUT_TOOLTIP": "crwdns7050:0crwdne7050:0",
 		"RESET_LAYOUT": "crwdns7052:0crwdne7052:0",

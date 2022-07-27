@@ -5,7 +5,7 @@ import { catchError, concatMap, delay, filter, finalize, switchMap, tap } from '
 import { EMPTY, firstValueFrom, of as observableOf } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import {
+import { 
 	ITenant,
 	IAuthResponse,
 	IOrganization,
@@ -16,7 +16,7 @@ import {
 	BonusTypeEnum,
 	CurrenciesEnum,
 	DefaultValueDateTypeEnum,
-	ImportTypeEnum,
+	ImportTypeEnum, 
 	IUserOrganization
 } from '@gauzy/contracts';
 import { environment } from './../../../environments/environment';
@@ -99,7 +99,7 @@ export class ImportExportComponent extends TranslationBaseComponent implements O
 		} = this.user;
 		const register: IUserRegistrationInput = {
 			user: {
-				firstName,
+				firstName, 
 				lastName,
 				username,
 				thirdPartyId,
@@ -121,17 +121,13 @@ export class ImportExportComponent extends TranslationBaseComponent implements O
 						return observableOf(EMPTY);
 					}),
 					switchMap((response: IAuthResponse) => {
-						if (response && response['status'] === 404) {
-							this._errorHandlingService.handleError(response);
-							return EMPTY;
-						}
 						if (response) {
 							const { token, user } = response;
 							this.token = token;
 							this.gauzyUser = user;
-							return this.gauzyCloudService.migrateTenant({
-								name,
-								isImporting: true,
+							return this.gauzyCloudService.migrateTenant({ 
+								name, 
+								isImporting: true, 
 								sourceId: tenantId,
 								userSourceId: sourceId
 							}, token);
@@ -143,12 +139,12 @@ export class ImportExportComponent extends TranslationBaseComponent implements O
 						if (tenant) {
 							for await (const { id: userOrganizationSourceId, organization } of this.userOrganizations) {
 								await firstValueFrom(
-									this.gauzyCloudService.migrateOrganization({
+									this.gauzyCloudService.migrateOrganization({ 
 										...this.mapOrganization(
-											organization,
+											organization, 
 											tenant,
 											userOrganizationSourceId
-										)
+										) 
 									}, this.token)
 								);
 							}
@@ -162,12 +158,12 @@ export class ImportExportComponent extends TranslationBaseComponent implements O
 								tenant: name
 							});
 							const externalUrl = environment.GAUZY_CLOUD_APP;
-							const tree = this.router.createUrlTree(['/pages/settings/import-export/import'], {
-								queryParams: {
+							const tree = this.router.createUrlTree(['/pages/settings/import-export/import'], { 
+								queryParams: { 
 									token: this.token,
 									userId: this.gauzyUser.id,
 									importType: ImportTypeEnum.MERGE
-								}
+								} 
 							});
 							let redirect: string;
 							if (externalUrl.indexOf('#') !== -1) {
@@ -175,9 +171,10 @@ export class ImportExportComponent extends TranslationBaseComponent implements O
 							} else {
 								redirect = externalUrl + '/#' + this.serializer.serialize(tree);
 							}
-							setTimeout(() => { this.router.navigate(['/pages/settings/import-export/external-redirect', { redirect }]); }, 1500);
+							setTimeout(() => { this.router.navigate(['/pages/settings/import-export/external-redirect', { redirect }]); }, 1500);	
 						},
 						error: (err) => {
+							console.log('tap error', err);
 							this._errorHandlingService.handleError(err);
 						},
 					}),
@@ -209,8 +206,8 @@ export class ImportExportComponent extends TranslationBaseComponent implements O
 			imageUrl,
 			tenant,
 			tenantId: tenant.id,
-			currency: currency as CurrenciesEnum,
-			defaultValueDateType: defaultValueDateType as DefaultValueDateTypeEnum,
+			currency: currency as CurrenciesEnum, 
+			defaultValueDateType: defaultValueDateType as DefaultValueDateTypeEnum, 
 			bonusType: bonusType as BonusTypeEnum,
 			isImporting: true,
 			sourceId,

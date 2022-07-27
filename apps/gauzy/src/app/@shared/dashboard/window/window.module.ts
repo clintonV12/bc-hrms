@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { WindowComponent } from '../window/window.component';
 import { NbButtonModule, NbIconModule, NbPopoverModule } from '@nebular/theme';
 import { SharedModule } from '../../shared.module';
-import { TranslateModule } from '../../translate/translate.module';
 
 @NgModule({
 	declarations: [WindowComponent],
@@ -13,8 +12,7 @@ import { TranslateModule } from '../../translate/translate.module';
 		NbIconModule,
 		NbPopoverModule,
 		NbButtonModule,
-		SharedModule,
-		TranslateModule
+		SharedModule
 	]
 })
 export class WindowModule {}

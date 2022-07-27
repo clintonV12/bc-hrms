@@ -20,6 +20,7 @@ import {
 	ToastrService
 } from '../../../@core/services';
 import { IChartData } from '../../../@shared/report/charts/line-chart/line-chart.component';
+import * as moment from 'moment';
 import { pluck } from 'underscore';
 import { ChartUtil } from '../../../@shared/report/charts/line-chart/chart-utils';
 import { TranslateService } from '@ngx-translate/core';
@@ -34,10 +35,8 @@ import { TranslationBaseComponent } from '../../../@shared/language-base';
 		'./accounting.component.scss'
 	]
 })
-export class AccountingComponent
-	extends TranslationBaseComponent
-	implements OnInit, OnDestroy
-{
+export class AccountingComponent extends TranslationBaseComponent implements OnInit, OnDestroy {
+
 	aggregatedEmployeeStatistics: IAggregatedEmployeeStatistic;
 	selectedDateRange: IDateRangePicker;
 	organization: IOrganization;
@@ -123,7 +122,7 @@ export class AccountingComponent
 			const { tenantId } = this.store.user;
 			const { id: organizationId } = this.organization;
 			const { startDate, endDate } = this.selectedDateRange;
-			this.isLoading = true;
+
 			this.aggregatedEmployeeStatistics =
 				await this.employeeStatisticsService.getAggregateStatisticsByOrganizationId(
 					{
@@ -134,7 +133,6 @@ export class AccountingComponent
 					}
 				);
 			this.generateDataForChart();
-			this.isLoading = false;
 		} catch (error) {
 			console.log(
 				'Error while retriving employee aggregate statistics',
@@ -144,25 +142,40 @@ export class AccountingComponent
 		}
 	}
 
-	public generateDataForChart() {
+	public async generateDataForChart() {
+		const { tenantId } = this.store.user;
+		const { id: organizationId } = this.organization;
+		const { startDate, endDate } = this.selectedDateRange;
+		const PERIOD = moment(endDate).diff(moment(startDate), 'day') + 1;
+		const data: any[] = [];
 		const commonOptions = {
 			borderWidth: 2,
 			pointRadius: 2,
 			pointHoverRadius: 4,
 			pointHoverBorderWidth: 4
 		};
+		this.isLoading = true;
+		for (let i = 0; i < PERIOD; i++) {
+			data.push({
+				dates: moment(startDate).add(i, 'day').format('LL'),
+				stats: await this.employeeStatisticsService.getAggregateStatisticsByOrganizationId(
+					{
+						organizationId,
+						tenantId,
+						startDate: moment(startDate).add(i, 'day').toDate(),
+						endDate: moment(startDate)
+							.add(i + 1, 'day')
+							.toDate()
+					}
+				)
+			});
+		}
 		this.chartData = {
-			labels: pluck(this.aggregatedEmployeeStatistics.chart, 'dates'),
+			labels: pluck(data, 'dates'),
 			datasets: [
 				{
 					label: this.getTranslation('INCOME_PAGE.INCOME'),
-					data: pluck(
-						pluck(
-							this.aggregatedEmployeeStatistics.chart,
-							'statistics'
-						),
-						'income'
-					),
+					data: pluck(pluck(pluck(data, 'stats'), 'total'), 'income'),
 					borderColor: ChartUtil.CHART_COLORS.blue,
 					backgroundColor: ChartUtil.transparentize(
 						ChartUtil.CHART_COLORS.blue,
@@ -175,10 +188,7 @@ export class AccountingComponent
 						'DASHBOARD_PAGE.PROFIT_HISTORY.EXPENSES'
 					),
 					data: pluck(
-						pluck(
-							this.aggregatedEmployeeStatistics.chart,
-							'statistics'
-						),
+						pluck(pluck(data, 'stats'), 'total'),
 						'expense'
 					),
 					borderColor: ChartUtil.CHART_COLORS.red,
@@ -190,13 +200,7 @@ export class AccountingComponent
 				},
 				{
 					label: this.getTranslation('DASHBOARD_PAGE.CHARTS.PROFIT'),
-					data: pluck(
-						pluck(
-							this.aggregatedEmployeeStatistics.chart,
-							'statistics'
-						),
-						'profit'
-					),
+					data: pluck(pluck(pluck(data, 'stats'), 'total'), 'profit'),
 					borderColor: ChartUtil.CHART_COLORS.yellow,
 					backgroundColor: ChartUtil.transparentize(
 						ChartUtil.CHART_COLORS.yellow,
@@ -206,13 +210,7 @@ export class AccountingComponent
 				},
 				{
 					label: this.getTranslation('DASHBOARD_PAGE.CHARTS.BONUS'),
-					data: pluck(
-						pluck(
-							this.aggregatedEmployeeStatistics.chart,
-							'statistics'
-						),
-						'bonus'
-					),
+					data: pluck(pluck(pluck(data, 'stats'), 'total'), 'bonus'),
 					borderColor: ChartUtil.CHART_COLORS.green,
 					backgroundColor: ChartUtil.transparentize(
 						ChartUtil.CHART_COLORS.green,
@@ -222,12 +220,14 @@ export class AccountingComponent
 				}
 			]
 		};
+		this.isLoading = false;
 	}
 
 	async selectEmployee(employee: ISelectedEmployee) {
-		const people = await firstValueFrom(
-			this.employeesService.getEmployeeById(employee.id, ['user'])
-		);
+		const people = await firstValueFrom(this.employeesService.getEmployeeById(
+			employee.id,
+			['user']
+		));
 		this.store.selectedEmployee = employee.id
 			? ({
 					id: people.id,

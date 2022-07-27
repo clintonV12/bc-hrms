@@ -49,22 +49,24 @@
 
   <div class="right-menu">
     <span><i (click)="onClick()" class="fas fa-times"></i></span>
-    <div class="download-apps-content">
+    <!--<div class="download-apps-content">
       <span class="download-apps-label">Download Apps:</span>
       <span class="download-apps-icons">
         <a *ngFor="let app of downloadApps" target="_blank" [href]="app.link" rel="noopener">
           <i [class]="app.icon"></i>
         </a>
       </span>
-    </div>
-    <p>
+    </div>-->
+
+    <!--<p>
       <a target="_blank" href="https://gauzy.co">{{
         'USER_MENU.HELP' | translate
         }}</a>
-    </p>
-    <p class="link" (click)="open(popup)">
+    </p>-->
+
+    <!--<p class="link" (click)="open(popup)">
       {{ 'USER_MENU.HOTKEYS' | translate }}
-    </p>
+    </p>-->
     <p>
       <ngx-theme-language-selector class="theme"></ngx-theme-language-selector>
     </p>

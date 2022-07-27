@@ -699,14 +699,6 @@ export class PagesComponent
 				},
 				children: [
 					{
-						title: 'Visitors',
-						icon: 'fas fa-id-badge',
-						link: `/pages/contacts/visitors`,
-						data: {
-							translationKey: 'CONTACTS_PAGE.VISITORS'
-						}
-					},
-					{
 						title: 'Leads',
 						icon: 'fas fa-id-badge',
 						link: `/pages/contacts/leads`,

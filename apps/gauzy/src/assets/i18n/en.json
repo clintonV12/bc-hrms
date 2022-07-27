@@ -122,11 +122,7 @@
 		"FEEDBACK":"Feedback",
 		"EQUIPMENT_SHARING": "Equipment Sharing",
 		"PRIVATE": "Private",
-		"PUBLIC": "Public",
-		"MANAGE_WIDGET": "Manage widgets",
-		"MOVE": "Move",
-		"COLLAPSE": "Collapse",
-		"EXPAND": "Expand"
+		"PUBLIC": "Public"
 	},
 	"SM_TABLE": {
 		"NO_DATA" : {
@@ -236,10 +232,8 @@
 		"END": "End",
 		"REQUEST_DATE": "Request Date",
 		"REGION": {
-			"BG": "Български (България)",
-			"EN": "English (United States)",
-			"RU": "Русский (Россия)",
-			"HE": "עברית ישראל"
+			"SS": "Siswati (Eswatini)",
+			"EN": "English (United States)"
 		},
 		"CURRENT_VALUE": "Current value",
 		"TARGET_VALUE": "Target value",
@@ -992,13 +986,11 @@
 		"CORPORATE": "Corporate",
 		"MATERIAL_LIGHT_THEME": "Material Light",
 		"MATERIAL_DARK_THEME": "Material Dark",
-		"GAUZY_LIGHT": "Gauzy Light",
-		"GAUZY_DARK": "Gauzy Dark",
+		"GAUZY_LIGHT": "Buciko Light",
+		"GAUZY_DARK": "Buciko Dark",
 		"LANGUAGE": "Language",
 		"ENGLISH": "English",
-		"BULGARIAN": "Bulgarian",
-		"HEBREW": "Hebrew",
-		"RUSSIAN": "Russian",
+		"SISWATI": "Siswati",
 		"PREFERRED_LAYOUT": "Layout",
 		"PREFERRED_LAYOUT_TOOLTIP": "This will only set the default layout and not change the layout on each page if you have already changed it once.",
 		"RESET_LAYOUT": "Reset Layout",
@@ -1009,9 +1001,9 @@
 		"QUICK_SETTINGS": "Quick Settings"
 	},
 	"CHANGELOG_MENU": {
-		"HEADER": "What's new?",
+		"HEADER": "",
 		"LEARN_MORE_URL": "Learn more",
-		"GAUZY_FEATURES": "Gauzy features"
+		"GAUZY_FEATURES": "Buciko-HR features"
 	},
 	"REPORT_PAGE": {
 		"MEMBERS_WORKED": "Members Worked",

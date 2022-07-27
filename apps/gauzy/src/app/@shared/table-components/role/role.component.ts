@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NbComponentStatus } from '@nebular/theme';
 import { ViewCell } from 'ng2-smart-table';
-import { RolesEnum } from '@gauzy/contracts';
+import { RolesEnum } from 'packages/contracts/dist';
 
 @Component({
 	selector: 'gauzy-role',

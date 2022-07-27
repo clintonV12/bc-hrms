@@ -29,6 +29,7 @@ import { NbTabComponent } from '@nebular/theme';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { TranslateService } from '@ngx-translate/core';
 import { JobService, Store, ToastrService } from './../../../../@core/services';
+import { AvatarComponent } from './../../../../@shared/components/avatar/avatar.component';
 import {
 	Nl2BrPipe,
 	TruncatePipe
@@ -39,7 +40,6 @@ import { ProposalTemplateService } from '../../proposal-template/proposal-templa
 import { API_PREFIX } from './../../../../@core/constants';
 import { ServerDataSource } from './../../../../@core/utils/smart-table';
 import { AtLeastOneFieldValidator } from './../../../../@core/validators';
-import { EmployeeLinksComponent } from 'apps/gauzy/src/app/@shared';
 
 @UntilDestroy({ checkProperties: true })
 @Component({
@@ -362,14 +362,14 @@ export class SearchComponent extends PaginationFilterBaseComponent
 			columns: {
 				...(!this.selectedEmployee
 					? {
-						employee: {
+							employeeIds: {
 								title: this.getTranslation('JOBS.EMPLOYEE'),
 
 								filter: false,
 								width: '15%',
 								type: 'custom',
 								sort: false,
-								renderComponent: EmployeeLinksComponent,
+								renderComponent: AvatarComponent,
 								valuePrepareFunction: (
 									cell,
 									row: IEmployeeJobPost
@@ -379,7 +379,7 @@ export class SearchComponent extends PaginationFilterBaseComponent
 											row.employee && row.employee.user
 												? row.employee.user.name
 												: null,
-										imageUrl:
+										src:
 											row.employee && row.employee.user
 												? row.employee.user.imageUrl
 												: null,
