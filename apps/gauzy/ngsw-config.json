@@ -19,7 +19,7 @@
 	],
 	"dataGroups": [
 		{
-			"name": "gauzy-api",
+			"name": "buciko-api",
 			"version": 1,
 			"urls": ["http://localhost:3000/api/**"],
 			"cacheConfig": {

@@ -10,7 +10,7 @@ export type Env = Readonly<{
 	// Set to true if build / runs in Docker
 	IS_DOCKER: boolean;
 
-	// Base URL of Gauzy UI website
+	// Base URL of UI website
 	CLIENT_BASE_URL: string;
 
 	// Base API URL
@@ -78,8 +78,8 @@ export const env: Env = cleanEnv(
 
 		DEFAULT_LATITUDE: num({ default: 42.6459136 }),
 		DEFAULT_LONGITUDE: num({ default: 23.3332736 }),
-		DEFAULT_CURRENCY: str({ default: 'USD' }),
-		DEFAULT_COUNTRY: str({ default: 'US' }),
+		DEFAULT_CURRENCY: str({ default: 'SZL' }),
+		DEFAULT_COUNTRY: str({ default: 'SZ' }),
 
 		DEMO: bool({ default: false }),
 
